@@ -3,3 +3,4 @@ fonttools
 numpy
 python-slugify
 fontTools
+requests

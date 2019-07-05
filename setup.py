@@ -20,6 +20,7 @@ setuptools.setup(
         'numpy',
         'python-slugify',
         'fontTools',
+        'requests',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
