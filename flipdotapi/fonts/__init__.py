@@ -3,13 +3,16 @@ from collections import namedtuple
 import fnmatch
 from fontTools import ttLib
 from slugify import slugify
+import logging
 
 class fonts:
     
     FONT_DIRECTORY = os.path.join(os.path.dirname(__file__), './')
-   
+    LOG_LEVEL = logging.INFO
+
     def __init__(self):
-        pass
+        logging.basicConfig(level=self.LOG_LEVEL)
+        self.logger = logging.getLogger(__name__)
 
     def shortName(self,  font ):
         FONT_SPECIFIER_NAME_ID = 4
