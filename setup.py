@@ -18,7 +18,7 @@ setuptools.setup(
         'Pillow',
         'fonttools',
         'numpy',
-        'slugify',
+        'python-slugify',
         'fontTools',
     ],
     classifiers=[
