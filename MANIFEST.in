@@ -1,1 +1,16 @@
 include flipdotapi/fonts/fonts/*
+include flipdotapi/fonts/fonts/apple/*
+include flipdotapi/fonts/fonts/arcade/arcade/*
+include flipdotapi/fonts/fonts/Px437_VGA_SquarePx_24.ttf
+include flipdotapi/fonts/fonts/Old-School-Games/*
+include flipdotapi/fonts/fonts/Edge-7x7/*
+include flipdotapi/fonts/fonts/silkscreen/*
+include flipdotapi/fonts/fonts/7x7-Monopixel/*
+include flipdotapi/fonts/fonts/Nintendo-Entertainment-System/*
+include flipdotapi/fonts/fonts/Px437_CompaqThin_8x16.ttf
+include flipdotapi/fonts/fonts/7x4-High-Pixel-Font
+include flipdotapi/fonts/fonts/7x4-High-Pixel-Font/7x4 High Pixel Font.ttf
+include flipdotapi/fonts/fonts/7x4-High-Pixel-Font/readme.txt
+include flipdotapi/fonts/fonts/7x4-High-Pixel-Font/license.txt
+include flipdotapi/fonts/fonts/Px437_CompaqThin_8x14.ttf
+include flipdotapi/fonts/fonts/bubble_15.ttf
