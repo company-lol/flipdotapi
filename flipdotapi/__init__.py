@@ -4,6 +4,7 @@
 import time
 from flipdotapi.text_builder import TextBuilder
 from flipdotapi.simulator import flipdotSim
+import numpy as np
 import requests
 import logging
 import json
@@ -16,21 +17,21 @@ class remote_sign:
     LINE2_START = 8
     LOG_LEVEL = logging.DEBUG
 
-    def __init__(self, url, cols, rows, simulator=False):
+    def __init__(self, url, width, height, simulator=False):
         # Create a serial port (update with port name on your system)
         logging.basicConfig(level=self.LOG_LEVEL)
         self.logger = logging.getLogger(__name__)
         self.url = url
-        self.columns = cols
-        self.rows = rows
-        self.text_builder = TextBuilder(cols, rows)
+        self.width = width
+        self.height = height
+        self.text_builder = TextBuilder(width, height)
 
         if simulator:
-            self.simulator = flipdotSim(self.columns, self.rows)
+            self.simulator = flipdotSim(self.width, self.height)
 
     def clear(self):
         self.logger.debug("erasing")
-        empty = self.sign.create_image()
+        empty = np.full((self.height, self.width), False)
         self.render_image(empty)
 
     def render_image(self, image_data):

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="flipdotapi",
-    version="0.0.8",
+    version="0.0.9",
     author="Harper Reed",
     author_email="harper@company.lol",
     description="A class that interacts with the flipdot-server",
