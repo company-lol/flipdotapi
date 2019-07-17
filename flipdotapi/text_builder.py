@@ -20,7 +20,7 @@ class TextBuilder(object):
     """
     
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int, ):
         """Constructor for a TextHelper object
 
         Args:
@@ -29,6 +29,7 @@ class TextBuilder(object):
         """
         self.width = width
         self.height = height
+        self.scroll = True
         logging.basicConfig(level=self.LOG_LEVEL)
         self.logger = logging.getLogger(__name__)
       
@@ -56,7 +57,62 @@ class TextBuilder(object):
         self.logger.debug("Fontsize: " + str(fontsize))
         return font
 
-    def text_image(
+
+
+    def text_image(self,
+            text: str,
+            font_name: str="nintendo-entertainment-system-regular",
+            alignment='left',
+            fit=True, scroll=True, scroll_speed=25):
+        
+        images = []
+        if scroll:
+            images = self.text_image_scroll(text=text, font_name=font_name, scroll_speed=scroll_speed)
+            pass
+        else:
+            images = self.text_image_lines(text=text, font_name=font_name, alignment=alignment, fit=fit)
+
+        return images
+
+
+
+    def text_image_scroll(
+            self,
+            text: str,
+            font_name: str="nintendo-entertainment-system-regular",
+            scroll_speed: int=25):
+
+        font_path = FONTS[font_name].path
+
+        font = ImageFont.truetype(font_path, 15)
+
+        size = font.getsize(text)
+        
+        image = Image.new('L', size=size)
+
+        draw = ImageDraw.Draw(image)
+        draw.fontmode = "1"
+
+        draw.text((0,0), text, font=font, fill=1) # put the text on the image
+        steps = round(size[0]/scroll_speed)
+
+        images= []
+        for i in range(steps):
+
+            buffer = (scroll_speed*i)
+
+            width = buffer 
+            width_2 = self.width + buffer
+            crop = (width,0,width_2,self.height)
+
+            part = image.crop(crop)
+
+            images.append(np.array(part))
+        return images
+            
+
+
+    def text_image_lines(
             self,
             text: str,
             font_name: str="nintendo-entertainment-system-regular",
@@ -76,6 +132,7 @@ class TextBuilder(object):
         # Get some details about the font
         font = self._get_font(font_name)
        
+        images = []
 
         if fit:
             wrapper = textwrap.TextWrapper(width=12) 
@@ -83,7 +140,6 @@ class TextBuilder(object):
         else:
             lines = self._get_lines(text, font)
 
-        images = []
         for line in lines:
             if fit:
                 font = self.fitfont(line, font_name)
@@ -108,6 +164,7 @@ class TextBuilder(object):
             images.append(np.array(image))
 
         return images
+
     
     
 
