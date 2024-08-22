@@ -47,10 +47,10 @@ class remote_sign:
         else:
             self.render_image_remote(image_data)
 
-    def write_text(self, text, alignment="centre", font_name="nintendo-entertainment-system-regular", fit=False):
+    def write_text(self, text, alignment="centre", font_name="nintendo-entertainment-system-regular", fit=False, scroll=True):
         self.logger.debug("sending text to sign: " + text)
         images = self.text_builder.text_image(
-            text, font_name=font_name, alignment=alignment, fit=fit)
+            text, font_name=font_name, scroll=scroll, alignment=alignment, fit=fit)
 
         for _, image in enumerate(images):
             self.render_image(image)
