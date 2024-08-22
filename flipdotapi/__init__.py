@@ -34,12 +34,18 @@ class remote_sign:
         empty = np.full((self.height, self.width), False)
         self.render_image(empty)
 
-    def render_image(self, image_data):
+    def render_image_remote(self, image_data):
         image_array = image_data.tolist()
+        print(image_array)
         headers = {'Content-type': 'application/json'}
         r = requests.post(self.url, data=json.dumps(image_array), headers=headers)
 
 
+    def render_image(self, image_data):
+        if hasattr(self, 'simulator'):
+            self.simulator.render_image(image_data)
+        else:
+            self.render_image_remote(image_data)
 
     def write_text(self, text, alignment="centre", font_name="nintendo-entertainment-system-regular", fit=False):
         self.logger.debug("sending text to sign: " + text)
